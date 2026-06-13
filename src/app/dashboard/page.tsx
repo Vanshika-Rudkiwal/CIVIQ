@@ -459,8 +459,7 @@ function ResultsPanel({
       // Generate PDF client-side
       const { generateActionPlanPDF } = await import('@/lib/pdf');
       const pdfBytes = await generateActionPlanPDF(profile, matchedSchemes, data.explanations || {});
-      const blob = new Blob([pdfBytes as BlobPart], { type: 'application/pdf' });
-      const url = URL.createObjectURL(blob);
+      const blob = new Blob([pdfBytes as unknown as BlobPart], { type: 'application/pdf' });      const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
       a.download = `civiq-action-plan-${Date.now()}.pdf`;
